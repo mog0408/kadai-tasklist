@@ -50,12 +50,6 @@ public class UpdateServlet extends HttpServlet {
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setUpdated_at(currentTime); // 更新日時のみ上書き
 
-            // データベースを更新
-            em.getTransaction().begin();
-            em.getTransaction().commit();
-
-            m.setUpdated_at(currentTime); // 更新日時のみ上書き
-
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
             List<String> errors = TaskValidator.validate(m);
             if (errors.size() > 0) {
